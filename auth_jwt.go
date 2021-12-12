@@ -486,6 +486,7 @@ func (mw *GinJWTMiddleware) LoginHandler(c *gin.Context) {
 
 	// Create the token
 	token := jwt.New(jwt.GetSigningMethod(mw.SigningAlgorithm))
+	token.Header["kid"] = "demokey"
 	claims := token.Claims.(jwt.MapClaims)
 
 	if mw.PayloadFunc != nil {
